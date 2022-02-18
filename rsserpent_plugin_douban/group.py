@@ -7,7 +7,7 @@ import requests
 from rsserpent.utils import cached
 
 
-path = "/douban/group/{gid}/"
+path = "/douban/group/{gid}"
 
 
 def timeHandler(t):

@@ -25,6 +25,7 @@ async def provider(gid: str) -> Dict[str, Any]:
     url = f'https://www.douban.com/group/{gid}/discussion'
     async with HTTPClient() as client:
         response = await client.get(url)
+    print(response.text)
     dom = PyQuery(response.text)
     author = dom("title").text().strip()
     dom("div#content tr.th").remove()

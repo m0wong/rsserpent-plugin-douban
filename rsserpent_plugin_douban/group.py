@@ -23,11 +23,14 @@ def timeHandler(t):
 async def provider(gid: str) -> Dict[str, Any]:
     """订阅小组讨论。"""
     url = f'https://www.douban.com/group/{gid}/discussion'
-    print(url)
+    headers = {
+        'Host': 'www.douban.com',
+        'Referer': 'https://www.douban.com/group/',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'
+    }
     async with HTTPClient() as client:
-        response = await client.get(url)
-        print(response)
-    print('1111')
+        response = await client.get(url, headers=headers)
     dom = PyQuery(response.text)
     author = dom("title").text().strip()
     dom("div#content tr.th").remove()

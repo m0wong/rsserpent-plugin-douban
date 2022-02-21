@@ -33,8 +33,8 @@ async def provider(gid: str) -> Dict[str, Any]:
         response = await client.get(url, headers=headers)
     dom = PyQuery(response.text)
     author = dom("title").text().strip()
-    dom("div#content tr.th").remove()
-    items = dom("div#content tr").items()
+    dom("div#content tr span.pl").parents("tr").remove()
+    items = dom("div#content tr").not_('.th').items()
     return {
         "title": f"{author}的讨论",
         "link": f"https://www.douban.com/group/{gid}/",

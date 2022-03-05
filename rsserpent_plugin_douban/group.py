@@ -43,7 +43,7 @@ async def provider(gid: str) -> Dict[str, Any]:
             {
                 "title": f'[{item("td.r-count").text()}回复]{item("td.title > a").attr("title").split("?")[0]}',
                 "description": '',
-                "link": item("td.title > a").attr('href'),
+                "link": item("td.title > a").attr('href').replace('www', 'm'),
                 "pub_date": timeHandler(item("td.time").text()),
                 "author": author,
             }
